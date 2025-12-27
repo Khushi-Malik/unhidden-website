@@ -9,14 +9,20 @@
     <h2 class="article-heading">Latest Posts</h2>
 
     <ul class="article-ul">
+
+        <% data.forEach(post => { %>
+         
         <li>
-            <a href="/article-slug">
-                <time class="article-list_date" datetime="2024-06-12">Dec 25, 2025</time>
-                <span class="article-title">Testing</span>
+            <a href="/post/<%= post._id %>" class="article-list_item">
+                <time class="article-list_date" datetime="2024-06-12"><%= post.createdAt.toDateString() %></time>
+                <span class="article-title"><%= post.title %></span>
             </a>
         </li>
         <!-- Add more posts here -->
+
+        <% }) %>
     </ul>
 
-    <a href="/older-posts" class="pagination">&lt; Older Posts</a>
+    <!-- <a href="/older-posts" class="pagination">&lt; Older Posts</a> -->
+     <!-- if old posts button needed to go back for more,  https://www.youtube.com/watch?v=Cz-2QzkuCHo&list=PL4cUxeGkcC9hAJ-ARcYq_z6lDZV7kT1xD&index=6 -->
 </section>

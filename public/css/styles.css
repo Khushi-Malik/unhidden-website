@@ -395,10 +395,7 @@ img {
     line-height: 1.8;
     max-width: 65ch;
     margin: 2rem auto;
-    padding: 2rem;
-    background-color: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
 }
 
 /* Pagination */
@@ -471,20 +468,19 @@ img {
 /* Search Bar */
 .searchBar {
     visibility: hidden;
-    opacity: 0;
-    transform: translateY(-20px);
-    padding: 1rem 0;
+    transform: translateY(-100px);
+    padding: 4px 0;
     margin-bottom: 0;
     background-color: var(--background-alt);
-    transition: all 0.3s ease;
-    max-height: 0;
-    overflow: hidden;
+    position: relative;
+    left: 0;
+    right: 0;
 }
 
 .searchBar.open {
     visibility: visible;
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0px);
     max-height: 200px;
     margin-bottom: 2rem;
 }
