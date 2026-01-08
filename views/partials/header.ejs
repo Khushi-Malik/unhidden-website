@@ -1,35 +1,26 @@
 <header class="header">
-    <a href="/" class="header-logo">UnHidden</a>
+    <div class="container">
+        <a href="/" class="header-logo">UnHidden</a>
 
-    <nav class="header_nav">
-        <ul>
-            <li>
-                <a href="/about">About</a>
-            </li>
-            <li>
-                <a href="/contact">Contact</a>
-            </li>
-        </ul>
-    </nav>
+        <nav class="header_nav">
+            <ul>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li>
+                    <button class="searchBtn" aria-expanded="false" aria-label="Toggle search">
+                        Search 🔍
+                    </button>
+                </li>
+            </ul>
+        </nav>
 
-    <div class="header_button">
-        <button class="searchBtn" aria-expanded="false">
-            Search 🔍
-        </button>
-        
-        <% if (typeof userId !== 'undefined' && userId) { %>
-            <!-- User is logged in - show admin controls -->
-            <a href="/dashboard" class="admin-link">
-                Dashboard
-            </a>
-            <a href="/logout" class="logout-button">
-                Logout
-            </a>
-        <% } else { %>
-            <!-- User is not logged in - show sign in -->
-            <a href="/admin" class="admin-link">
-                Sign In
-            </a>
-        <% } %>
+        <div class="header_actions">
+            <% if (typeof userId !== 'undefined' && userId) { %>
+                <a href="/dashboard" class="header-link">Dashboard</a>
+                <a href="/logout" class="header-link">Logout</a>
+            <% } else { %>
+                <a href="/admin" class="header-link">Sign In</a>
+            <% } %>
+        </div>
     </div>
 </header>
