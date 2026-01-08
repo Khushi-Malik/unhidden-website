@@ -210,4 +210,31 @@ router.get('/logout', (req, res) => {
   });
 });
 
+
+/* ---------------------------
+   POST — Search
+---------------------------- */
+router.post('/search', async (req, res) => {
+  try {
+    const locals = {
+      title: "Search Results",
+      description: "Search the site"
+    }
+
+    let searchTerm = req.body.searchTerm;
+    const searchRegex = searchTerm.replace(/[^a-zA-Z0-9 ]/g, '');
+    const data = await Post.find(
+      { $or: [
+        { title: { $regex: new RegExp(searchRegex, 'i') }},
+        { body: { $regex: new RegExp(searchRegex, 'i') }},
+      ]}
+    );
+
+    res.render('search', { data, locals });
+
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 module.exports = router;

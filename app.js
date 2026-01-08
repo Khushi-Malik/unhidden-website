@@ -48,6 +48,10 @@ app.use(express.static('public'));
 app.use(expressLayout);
 app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
+app.use((req, res, next) => {
+  res.locals.userId = req.session.userId;
+  next();
+});
 
 // Routes
 app.use('/', require('./server/routes/main'));
