@@ -10,14 +10,31 @@ router.get('', async (req, res) => {
     const locals = {
         title: "Unhidden",
         description: "Welcome to the Unhidden Blog"
-
-    }
+    };
 
     try {
-      const data = await Post.find();
-      res.render('index', { locals, data });
+        const perPage = 10;
+        const page = parseInt(req.query.page) || 1;
+        
+        const data = await Post.find()
+            .sort({ createdAt: -1 })
+            .skip((perPage * page) - perPage)
+            .limit(perPage);
+        
+        const count = await Post.countDocuments();
+        const nextPage = page + 1;
+        const hasNextPage = nextPage <= Math.ceil(count / perPage);
+        
+        res.render('index', { 
+            locals, 
+            data,
+            current: page,
+            pages: Math.ceil(count / perPage),
+            hasNextPage
+        });
     } catch (error) {
-      console.error(error);
+        console.error(error);
+        res.status(500).send('Server Error');
     }
 });
 

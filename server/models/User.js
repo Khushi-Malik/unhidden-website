@@ -13,4 +13,11 @@ const UserSchema = new Schema({
     }
 });
 
+UserSchema.pre('save', function(next) {
+  if (this.password.length < 8) {
+    next(new Error('Password must be at least 8 characters'));
+  }
+  next();
+});
+
 module.exports = mongoose.model('User', UserSchema);

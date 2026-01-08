@@ -18,9 +18,15 @@ const PORT = process.env.PORT || 3000;
 // DB
 connectDB();
 
-// Middleware
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// Middleware - IMPORTANT: Increase body size limits for images
+app.use(express.urlencoded({ 
+  extended: true,
+  limit: '50mb',              // Increase limit for form data
+  parameterLimit: 50000       // Increase parameter limit
+}));
+app.use(express.json({ 
+  limit: '50mb'               // Increase limit for JSON data
+}));
 app.use(cookieParser());
 app.use(methodOverride('_method'));
 

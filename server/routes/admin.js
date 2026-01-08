@@ -115,7 +115,8 @@ router.get('/add-post', authMiddleware, (req, res) => {
 
   res.render('admin/add-post', {
     locals,
-    layout: adminLayout
+    layout: adminLayout,
+    process: { env: { TINYMCE_API_KEY: process.env.TINYMCE_API_KEY } }
   });
 });
 
@@ -154,7 +155,8 @@ router.get('/edit-post/:id', authMiddleware, async (req, res) => {
     res.render('admin/edit-post', {
       locals,
       data,
-      layout: adminLayout
+      layout: adminLayout,
+      process: { env: { TINYMCE_API_KEY: process.env.TINYMCE_API_KEY } }
     });
 
   } catch (error) {
