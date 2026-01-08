@@ -44,33 +44,28 @@ router.get('/post/:id', async (req, res) => {
 
 // GET
 // Post: SearchTerm
-router.get('/search', async (req, res) => {
+router.post('/search', async (req, res) => {
   try {
-    let searchTerm = req.query.searchTerm;
-
-    const data = await Post.find({ title: { $regex: searchTerm, $options: 'i' } });
-
     const locals = {
       title: "Search Results",
       description: "Search the site"
     }
 
-    res.render('post', { locals, data });
+    let searchTerm = req.body.searchTerm;
+    const searchRegex = searchTerm.replace(/[^a-zA-Z0-9 ]/g, '');
+    const data = await Post.find(
+      { $or: [
+        { title: { $regex: new RegExp(searchRegex, 'i') }},
+        { body: { $regex: new RegExp(searchRegex, 'i') }},
+      ]}
+    );
+
+    res.render('search', { data, locals });
+
   } catch (error) {
     console.error(error);
   }
 });
-
-// function insertPostData() {
-//   Post.insertMany([
-//     {
-//       title:"First Post",
-//       body:"This is the body of the first post."
-//     }
-//   ])
-// }
-// insertPostData(); 
-
 
 router.get('/about', (req, res) => {
   res.render('about');
