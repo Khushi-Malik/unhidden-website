@@ -203,39 +203,67 @@ a:hover {
 /* ==========================================
    SEARCH BAR
 ========================================== */
-
 .searchBar {
   background-color: var(--bg-alt);
   border-bottom: 1px solid var(--border);
   overflow: hidden;
   max-height: 0;
   opacity: 0;
-  transition: max-height var(--transition), opacity var(--transition), padding var(--transition);
+  transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
 }
 
 .searchBar.open {
-  max-height: 100px;
+  max-height: 60px; /* much smaller */
   opacity: 1;
-  padding: var(--space-lg) 0;
+  padding: 0.5rem 0; /* smaller vertical padding */
 }
 
 .search-form {
   max-width: 600px;
   margin: 0 auto;
+  display: flex;             /* align input + buttons horizontally */
+  gap: 0.5rem;              /* space between input and buttons */
+  align-items: center;       /* vertically center the buttons */
 }
 
 .search-form input {
-  width: 100%;
-  padding: var(--space-sm) var(--space-md);
+  flex: 1;                   /* input takes remaining width */
+  padding: 0.4rem 0.6rem;    /* compact padding */
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   background-color: white;
 }
 
 .search-form input:focus {
   outline: none;
   border-color: var(--primary);
+}
+
+.search-submit {
+  padding: 0.4rem 0.8rem; 
+  font-size: 0.8125rem;  
+  background-color: var(--primary);
+  color: rgb(222, 239, 249);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.search-close {
+  padding: 0.4rem 0.8rem; 
+  font-size: 0.8125rem;  
+  background-color: var(--primary);
+  color: rgb(222, 239, 249);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 /* ==========================================
@@ -259,9 +287,17 @@ a:hover {
   margin: 0 auto var(--space-xl);
 }
 
-.author_image {
+/* .author_image {
   margin: var(--space-xl) auto 0;
   border-radius: var(--radius-sm);
+} */
+
+.author_image_container {
+    text-align: center;
+}
+
+.author_image {
+    display: inline-block; /* ensures it respects text-align */
 }
 
 /* ==========================================
@@ -388,28 +424,45 @@ textarea:focus {
 
 .btn {
   display: inline-block;
-  padding: var(--space-sm) var(--space-lg);
-  background-color: var(--primary);
+  padding: 0.4rem 0.8rem; /* smaller padding */
+  background-color: var(--primary); /* blue */
   color: white;
-  border-radius: var(--radius-sm);
-  border: none;
+  border-radius: var(--radius-md); /* slightly rounded */
+  border: none; /* remove border */
   cursor: pointer;
   font-weight: 600;
-  font-size: 0.9375rem;
+  font-size: 0.875rem; /* slightly smaller text */
+  box-shadow: 0 3px 6px rgba(46, 134, 222, 0.15); /* subtle shadow */
+  transition: all 0.3s ease; /* smooth hover transition */
+  margin: 0.25rem; /* small margin around button */
 }
 
 .btn:hover {
   background-color: var(--primary-dark);
+  box-shadow: 0 5px 10px rgba(46, 134, 222, 0.2); /* slightly bigger shadow */
+  transform: translateY(-1px); /* subtle lift effect */
 }
 
 .btn-delete {
-  background-color: var(--danger);
-  margin-left: var(--space-sm);
+  background-color: #e74c3c; /* elegant red for delete */
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  box-shadow: 0 3px 6px rgba(231, 76, 60, 0.15);
+  transition: all 0.3s ease;
+  padding: 0.4rem 0.8rem; /* smaller padding */
+  margin: 0.25rem; /* small margin around button */
 }
 
 .btn-delete:hover {
-  background-color: #a82727;
+  background-color: #c0392b;
+  box-shadow: 0 5px 10px rgba(231, 76, 60, 0.2);
+  transform: translateY(-1px);
 }
+
 
 /* ==========================================
    ADMIN SECTION

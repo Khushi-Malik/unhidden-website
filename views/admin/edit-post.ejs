@@ -3,10 +3,6 @@
     <h2>View / Edit Post</h2>
 </div>
 
-<form action="/delete-post/<%= data._id %>?_method=DELETE" method="POST">
-    <input type="submit" value="Delete Post" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this post?')">
-</form>
-
 <form action="/edit-post/<%= data._id %>?_method=PUT" method="POST" id="editForm">
     <label for="title">Title</label>
     <input type="text" name="title" value="<%= data.title %>" required>
@@ -15,6 +11,9 @@
     <textarea id="editor" name="body"><%= data.body %></textarea>
     
     <button type="submit" class="btn">Update Post</button>
+    <form action="/delete-post/<%= data._id %>?_method=DELETE" method="POST">
+      <input type="submit" value="Delete Post" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this post?')">
+    </form>
 </form>
 
 

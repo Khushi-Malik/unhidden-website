@@ -1,7 +1,3 @@
-console.log('ENV CHECK →', {
-  MONGODB_URL: process.env.MONGODB_URL,
-});
-
 require('dotenv').config();
 
 

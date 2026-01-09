@@ -14,7 +14,7 @@
             <div class="admin-post-actions">
                 <a href="/edit-post/<%= post._id %>" class="edit-button">Edit</a>
                 <form action="/delete-post/<%= post._id %>?_method=DELETE" method="POST">
-                    <button type="submit" onclick="return confirm('Delete this post?')">
+                    <button type="submit" onclick="return confirm('Delete this post?')" style="border: none; border-radius: none; background-color: #f7fafc; font-size: 1rem; color: #ff4c4c; cursor: pointer; ">
                         Delete
                     </button>
                 </form>
